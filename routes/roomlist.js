@@ -36,17 +36,17 @@ router.post("/",async (req,res) => {
   }
 })
 
-// router.get("/:room",async (req,res) => {
-//   try{
-//     const Rooms = await Roomlist.findOne({room : req.params.room}).lean()
-//     if(!Rooms){
-//       throw new Error ("No users found")
-//     }
-//     res.status(200).json("Data existed")
-//   }catch(error){
-//     res.status(400).json({message : error.message})
-//   }
-// })
+router.get("/:room",async (req,res) => {
+  try{
+    const Rooms = await Roomlist.findOne({room : req.params.room}).lean()
+    if(!Rooms){
+      return res.status(200).json("Data not existed")
+    }
+    res.status(200).json("Data existed")
+  }catch(error){
+    res.status(400).json({message : error.message})
+  }
+})
 
 
 module.exports = router
